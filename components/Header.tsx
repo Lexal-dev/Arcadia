@@ -36,7 +36,7 @@ export const Header = () => {
 
     return (
         <header className="w-full">
-            <nav className='font-caption'>
+            <nav className='font-caption text-center'>
             {isMobile ? null : <h1 className='font-caption text-4xl w-full h-full py-3'>Arcadia</h1>}
                 {isMobile ? 
                     <div className='flex items-center justify-start px-2 pt-4'>
@@ -45,21 +45,21 @@ export const Header = () => {
                     </div>
                     : 
                     <ul className="flex justify-around py-4 bg-green-800 text-2xl border-t-2 border-b-2 border-white">
-                        <li className='menuDefaultHover'><a href="#">Accueil</a></li>
-                        <li className='menuDefaultHover'><a href="#">Services</a></li>
-                        <li className='menuDefaultHover'><a href="#">Habitats</a></li>
-                        <li className='menuDefaultHover'><a href="#">Contact</a></li>
-                        <li className='menuDefaultHover'><a href="#">Connexion</a></li>
+                        <li className='menuDefaultHover'><a href="/">Accueil</a></li>
+                        <li className='menuDefaultHover'><a href="/services">Services</a></li>
+                        <li className='menuDefaultHover'><a href="/habitats">Habitats</a></li>
+                        <li className='menuDefaultHover'><a href="/contact">Contact</a></li>
+                        <li className='menuDefaultHover'><a href="/connexion">Connexion</a></li>
                     </ul>
                 }
 
                 {isDropdownOpen && (
                     <ul className='flex-col text-start bg-green-800 mt-3 py-2 text-xl border-t-2 border-b-2 border-white'>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="#">Accueil</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="#">Services</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="#">Habitats</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="#">Contact</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="#">Connexion</a></li>
+                        <li className='mx-2 py-1 menuMobileHover'><a href="/">Accueil</a></li>
+                        <li className='mx-2 py-1 menuMobileHover'><a href="/services">Services</a></li>
+                        <li className='mx-2 py-1 menuMobileHover'><a href="/habitats">Habitats</a></li>
+                        <li className='mx-2 py-1 menuMobileHover'><a href="/contact">Contact</a></li>
+                        <li className='mx-2 py-1 menuMobileHover'><a href="/connexion">Connexion</a></li>
                     </ul>
                 )}
             </nav>

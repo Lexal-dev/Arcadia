@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Lobster } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/Header";
 
 
 const lobster = Lobster({
@@ -24,7 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(GeistSans.variable, lobster.variable, GeistMono.variable, "font-sans")}>{children}</body>
+      <body className={cn(GeistSans.variable, lobster.variable, GeistMono.variable, "font-sans")}>
+        <Header/>
+        {children}
+      </body>
     </html>
   );
 }
