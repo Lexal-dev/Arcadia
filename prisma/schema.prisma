@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+  VETERINARIAN
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  role      Role     
+  password  String
+}
+
+model Habitat {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  image       String
+  animals     Animal[]
+}
+
+model Animal {
+  id          Int      @id @default(autoincrement())
+  name        String
+  breed       String
+  image       String
+  state       String
+  food        String
+  foodGrams   Int
+  lastVisit   DateTime
+  details     String?
+  habitat     Habitat  @relation(fields: [habitatId], references: [id])
+  habitatId   Int
+}

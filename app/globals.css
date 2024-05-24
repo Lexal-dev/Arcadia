@@ -35,16 +35,3 @@
       @apply bg-background text-foreground;
     }
   }
-
-/* CSS MENU */
-
-.menuMobileHover:hover
-{
-  background-color: #4CAF50;
-  color: #FFEB3B; 
-}
-
-.menuDefaultHover:hover
-{
-  color: #FFEB3B; 
-}
