@@ -1,68 +1,38 @@
-"use client"
-
-import React, { useState, useEffect } from 'react';
-import { Button } from './ui/button';
-import { Menu } from 'lucide-react';
+import { FaHome, FaUser  } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
+import { RiServiceFill } from "react-icons/ri";
+import { GiHabitatDome } from "react-icons/gi";
+import Link from "next/link";
 
 export const Header = () => {
-    const [isMobile, setIsMobile] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    useEffect(() => {
-        const handleResize = () => {
-            const newIsMobile = window.innerWidth <= 758;
-            setIsMobile(newIsMobile);
+    const navMenu = [
+        {name: "Services", icon:RiServiceFill , path: "/services"},
+        {name: "Habitats", icon:GiHabitatDome, path: "/habitats"},
+        {name: "Contact", icon:IoIosMail, path: "/contact"}, 
+    ];
 
-            // Fermer le menu si la largeur de l'écran dépasse 758 pixels
-            if (!newIsMobile && isDropdownOpen) {
-                setIsDropdownOpen(false);
-            }
-        };
-
-        // Vérifier si window est défini avant d'ajouter le gestionnaire d'événements
-        if (typeof window !== 'undefined') {
-            setIsMobile(window.innerWidth <= 758);
-            window.addEventListener('resize', handleResize);
-
-            return () => {
-                window.removeEventListener('resize', handleResize);
-            };
-        }
-    }, [isDropdownOpen]);
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen(prevState => !prevState); 
-    };
-
-    return (
-        <header className="w-full">
-            <nav className='font-caption text-center'>
-            {isMobile ? null : <h1 className='font-caption text-4xl w-full h-full py-3'>Arcadia</h1>}
-                {isMobile ? 
-                    <div className='flex items-center justify-start px-2 pt-4'>
-                        <Button className='text-2xl p-2 rounded border-white border-2' onClick={toggleDropdown}><Menu /></Button>
-                        <h1 className='font-caption text-4xl w-full h-full'>Arcadia</h1>
-                    </div>
-                    : 
-                    <ul className="flex justify-around py-4 bg-green-800 text-2xl border-t-2 border-b-2 border-white">
-                        <li className='menuDefaultHover'><a href="/">Accueil</a></li>
-                        <li className='menuDefaultHover'><a href="/services">Services</a></li>
-                        <li className='menuDefaultHover'><a href="/habitats">Habitats</a></li>
-                        <li className='menuDefaultHover'><a href="/contact">Contact</a></li>
-                        <li className='menuDefaultHover'><a href="/connexion">Connexion</a></li>
-                    </ul>
-                }
-
-                {isDropdownOpen && (
-                    <ul className='flex-col text-start bg-green-800 mt-3 py-2 text-xl border-t-2 border-b-2 border-white'>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="/">Accueil</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="/services">Services</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="/habitats">Habitats</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="/contact">Contact</a></li>
-                        <li className='mx-2 py-1 menuMobileHover'><a href="/connexion">Connexion</a></li>
-                    </ul>
-                )}
+    return(
+        <header>
+            <nav className="flex justify-around text-sm items-center gap-1 p-5 shadow-md md:text-xl bg-green-800 border-b-4 border-yellow-100">
+                <Link href="/" className="flex items-center md:gap-1 text-white hover:text-yellow-200">
+                    <FaHome/>
+                    <span>Accueil</span>
+                </Link>
+                <ul className="flex items-center justify-around md:gap-5 w-full md:w-1/2 overflow-x-auto">
+                    {navMenu.map((item) => (
+                        <li key={item.name}>
+                            <Link href={item.path} className="flex items-center md:gap-1 text-white hover:text-yellow-200">
+                                <item.icon/>
+                                <span>{item.name}</span>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+                <Link href="/login" className="flex items-center justify-center rounded-full w-6 h-6 md:w-8 md:h-8 bg-gray-200 hover:bg-yellow-200">
+                    <FaUser className="text-gray-700"/>
+                </Link>
             </nav>
-        </header>
+        </header>        
     );
 };
